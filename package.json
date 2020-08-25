@@ -1,0 +1,19 @@
+{
+  "name": "bsa_test_for_work",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node --experimental-modules --es-module-specifier-resolution=node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cassandra-driver": "^4.6.0"
+  },
+  "devDependencies": {
+    "json-schema-generator": "^2.0.6"
+  }
+}

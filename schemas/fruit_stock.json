@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "fruit_stock",
+  "type": "object",
+  "properties": {
+    "item_id": { "type": "string" },
+    "name": { "type": "string" },
+    "price_p_item": { "type": "number" },
+    "shoper": {
+      "type": "object",
+      "properties": {
+        "city": { "type": "string" },
+        "street": { "type": "string" },
+        "house": {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              { "type": "number" },
+              { "type": "string" }
+            ]
+          }
+        }
+      }
+    }
+  }
+}
