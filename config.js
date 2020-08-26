@@ -3,6 +3,6 @@ export const config = {
   "port": "9042",
   "user": "newuser",
   "password": "password",
-  "databaseName": "grocery",
+  "databaseName": "databaseName",
   "localDataCenter": "datacenter1"
 }

@@ -1,33 +1,21 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "title": "users",
   "type": "object",
+  "title": "users",
   "properties": {
-    "id": { "type": "string" },
     "addresses": {
       "type": "object",
       "properties": {
-        "home": {
+        "itemKey": { "type": "string" },
+        "itemValue": {
           "type": "object",
           "properties": {
             "street": { "type": "string" },
             "city": { "type": "string" },
-            "zip_code": { "type": "number" },
+            "zip_code": { "type": "integer" },
             "phones": {
               "type": "array",
-              "items": { "type": "string" }
-            }
-          }
-        },
-        "work": {
-          "type": "object",
-          "properties": {
-            "street": { "type": "string" },
-            "city": { "type": "string" },
-            "zip_code": { "type": "number" },
-            "phones": {
-              "type": "array",
-              "items": { "type": "string" }
+              "items": [{ "type": "string" }]
             }
           }
         }
@@ -35,14 +23,17 @@
     },
     "direct_reports": {
       "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "firstname": { "type": "string" },
-          "lastname": { "type": "string" }
+      "items": [
+        {
+          "type": "object",
+          "properties": {
+            "firstname": { "type": "string" },
+            "lastname": { "type": "string" }
+          }
         }
-      }
+      ]
     },
+    "id": { "type": "string" },
     "name": {
       "type": "object",
       "properties": {

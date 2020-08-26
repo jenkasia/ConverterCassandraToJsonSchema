@@ -1,0 +1,6 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "title": "empty_test_table",
+  "properties": { "id": { "type": "integer" } }
+}

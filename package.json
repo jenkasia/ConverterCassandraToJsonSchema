@@ -11,9 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "cassandra-driver": "^4.6.0"
-  },
-  "devDependencies": {
-    "json-schema-generator": "^2.0.6"
+    "cassandra-driver": "^4.6.0",
+    "util": "^0.12.3"
   }
 }

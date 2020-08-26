@@ -1,18 +1,11 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "title": "user",
   "type": "object",
+  "title": "user",
   "properties": {
+    "adress": { "type": "string" },
+    "age": { "type": "integer" },
     "id": { "type": "string" },
-    "adress": {
-      "type": "object",
-      "properties": {
-        "city": { "type": "string" },
-        "street": { "type": "string" },
-        "house": { "type": "number" }
-      }
-    },
-    "age": { "type": "number" },
     "name": { "type": "string" },
     "secondname": { "type": "string" }
   }

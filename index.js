@@ -1,7 +1,8 @@
 import cassandra from 'cassandra-driver';
 import { config } from './config'
 import fs from 'fs';
-import { SchemaGenerator } from './jsonSchemaGenerator'
+import SchemaGenerator from './cqlToJsonSchema'
+import util from 'util'
 
 const client = new cassandra.Client({
   contactPoints: [config.host],
@@ -26,7 +27,7 @@ function execute(query, params, callback) {
   });
 }
 
-//lost with tables from database
+//list with tables from database
 let tableList = []
 
 //Return promise that get all pages name in database
@@ -36,8 +37,9 @@ const getAllTables = () => {
 }
 
 //Function that save stringified JSON to file
-const saveSchemaToFile = (fileName, dataToSave) => {
-  fs.writeFileSync(`schemas/${fileName}.json`, dataToSave, function (err) {
+const saveSchemaToFile = (schemaToSave) => {
+  const stringifiedSchema = JSON.stringify(schemaToSave)
+  fs.writeFileSync(`schemas/${schemaToSave.title}.json`, stringifiedSchema, function (err) {
     if (err) {
       throw err
     };
@@ -47,41 +49,17 @@ const saveSchemaToFile = (fileName, dataToSave) => {
 
 //Schema creator
 const createSchemaForAllTablesHandler = (tableNames) => {
-  const tablesItemsReferences = []
-
-  //Create query to get first line from database
-  const queryGenerator = (tableName) => {
-    return `SELECT JSON * FROM ${config.databaseName}.${tableName} LIMIT 1;`
-  }
 
   const executors = tableNames.map(tableName => {
-    const query = queryGenerator(tableName)
-    return execute(query, [], (err, result) => {
-      tablesItemsReferences.push({ tableTitle: tableName, resultRow: result.rows[0] })
-    })
+    const tableReference = client.metadata.getTable(config.databaseName, tableName)
+    return tableReference
   })
 
-  //Return promise that generate schema and call saver to file function
-  return Promise.all(executors).then(() => {
-    tablesItemsReferences.forEach(tableItemRow => {
-      if (tableItemRow.resultRow) {
-        let objectOfDataRow = JSON.parse(tableItemRow.resultRow[`[json]`], (key, value) => {
-          try {
-            return JSON.parse(value)
-          }
-          catch {
-            return value
-          }
-        }
-        );
-        const title = tableItemRow.tableTitle
-        let schema = SchemaGenerator(title, objectOfDataRow)
-        let stringifiedSchema = JSON.stringify(schema)
-        saveSchemaToFile(title, stringifiedSchema)
-      }
-      else {
-        console.log(`First line in table ${tableItemRow.tableTitle} is undefined `)
-      }
+  //Can Get UDT
+  return Promise.all(executors).then((tablesItemsReferences) => {
+    tablesItemsReferences.forEach(tablesItemsReference => {
+      const resultSchema = SchemaGenerator(tablesItemsReference)
+      saveSchemaToFile(resultSchema)
     })
   });
 }

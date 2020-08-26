@@ -1,0 +1,145 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "title": "standard_types",
+  "properties": {
+    "addresses": {
+      "type": "object",
+      "properties": {
+        "itemKey": { "type": "string" },
+        "itemValue": {
+          "type": "object",
+          "properties": {
+            "street": { "type": "string" },
+            "city": { "type": "string" },
+            "zip_code": { "type": "integer" },
+            "phones": {
+              "type": "array",
+              "items": [{ "type": "string" }]
+            }
+          }
+        }
+      }
+    },
+    "ascii": { "type": "string" },
+    "bigint": { "type": "integer" },
+    "blob": { "type": "string" },
+    "bool": { "type": "boolean" },
+    "clusteringKey": { "type": "string" },
+    "date": { "type": "string" },
+    "decimal": { "type": "number" },
+    "direct_reports": {
+      "type": "array",
+      "items": [
+        {
+          "type": "object",
+          "properties": {
+            "firstname": { "type": "string" },
+            "lastname": { "type": "string" }
+          }
+        }
+      ]
+    },
+    "double": { "type": "number" },
+    "dur": { "type": "string" },
+    "float": { "type": "number" },
+    "inet": { "type": "string" },
+    "integer": { "type": "integer" },
+    "listStr": {
+      "type": "array",
+      "items": [{ "type": "string" }]
+    },
+    "mapStr": {
+      "type": "object",
+      "properties": {
+        "itemKey": { "type": "string" },
+        "itemValue": { "type": "string" }
+      }
+    },
+    "name": {
+      "type": "object",
+      "properties": {
+        "firstname": { "type": "string" },
+        "lastname": { "type": "string" }
+      }
+    },
+    "partitiionKey": { "type": "string" },
+    "setBlb": {
+      "type": "array",
+      "items": [{ "type": "string" }]
+    },
+    "setDate": {
+      "type": "array",
+      "items": [{ "type": "string" }]
+    },
+    "setList": {
+      "type": "array",
+      "items": [
+        { "type": "array", "items": [{ "type": "string" }] }
+      ]
+    },
+    "setMap": {
+      "type": "array",
+      "items": [
+        {
+          "type": "object",
+          "properties": {
+            "itemKey": { "type": "string" },
+            "itemValue": { "type": "string" }
+          }
+        }
+      ]
+    },
+    "setNum": {
+      "type": "array",
+      "items": [{ "type": "integer" }]
+    },
+    "setSet": {
+      "type": "array",
+      "items": [
+        { "type": "array", "items": [{ "type": "string" }] }
+      ]
+    },
+    "setStr": {
+      "type": "array",
+      "items": [{ "type": "string" }]
+    },
+    "setTs": {
+      "type": "array",
+      "items": [{ "type": "string" }]
+    },
+    "setTuple": {
+      "type": "array",
+      "items": [
+        {
+          "type": "array",
+          "items": [{ "type": "string" }],
+          "required": ["0"]
+        }
+      ]
+    },
+    "smallint": { "type": "integer" },
+    "text": { "type": "string" },
+    "time": { "type": "string" },
+    "timeuuid": { "type": "string" },
+    "tinyint": { "type": "integer" },
+    "ts": { "type": "string" },
+    "tuple": {
+      "type": "array",
+      "items": [{ "type": "string" }],
+      "required": ["0"]
+    },
+    "tuple1": {
+      "type": "array",
+      "items": [
+        { "type": "integer" },
+        { "type": "string" },
+        { "type": "number" }
+      ],
+      "required": ["0", "1", "2"]
+    },
+    "uuid": { "type": "string" },
+    "varchar": { "type": "string" },
+    "varint": { "type": "integer" }
+  }
+}
